@@ -14,7 +14,7 @@ APIObject.saveUser = (users) => {
         .then(response => response.json())
 }
 
-APIObject.getUserInfo = (users) => {
+APIObject.getUserInfo = () => {
     return fetch("http://localhost:8088/users"
         .then(response => response.json())
     )
