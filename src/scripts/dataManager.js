@@ -15,9 +15,8 @@ APIObject.saveUser = (users) => {
 }
 
 APIObject.getUserInfo = () => {
-    return fetch("http://localhost:8088/users"
+    return fetch("http://localhost:8088/users")
         .then(response => response.json())
-    )
 }
 
 // APIObject.saveNews = (news) => {

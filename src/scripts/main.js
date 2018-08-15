@@ -6,29 +6,32 @@ document.querySelector("#registerContainer").innerHTML = formManager.renderRegis
 document.querySelector("#registerNewUser").addEventListener("click", () => {
     //Get form field values
     //Create object from them
-    //Add timestamp
-
-
  
     const newUser = {
         name: document.querySelector("#userName").value,
         email: document.querySelector("#userEmail").value,
     }
 
-    APIObject.getUserInfo().then((users) => {
-        if (newUser.name === users.find(newUser.name)) {
+    //Check if the values are already used in database
+    APIObject.getUserInfo().then((result) => {
+        let userName = result.find(item => {
+            return newUser.name === item.name
+        })
+        let userEmail = result.find(item => {
+            return newUser.email === item.email
+        })
+        if (userName) {
             alert("UserName already taken")
-        } else if (newUser.email === users.find(newUser.email)) {
-            alert("email already used with other account")
+        } else if (userEmail) {
+            alert ("Email is already taken")
         } else {
             //Post to API
             APIObject.saveUser(newUser).then(() => {
                 //Clear the Form Fields
                 formManager.clearForm()
+                //Put HTML Representation on the DOM
             })
         }
     })
 })
-
-
 
