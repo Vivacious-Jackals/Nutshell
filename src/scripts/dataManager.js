@@ -19,6 +19,8 @@ APIObject.getUserInfo = () => {
         .then(response => response.json())
 }
 
+
+
 // APIObject.saveNews = (news) => {
 //     return fetch("http://localhost:8088/news", {
 //         method: "POST",

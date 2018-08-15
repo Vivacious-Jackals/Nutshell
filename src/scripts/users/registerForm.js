@@ -1,10 +1,4 @@
 const formManager = Object.create(null, {
-    clearForm: {
-        value: () => {
-            document.querySelector("#userName").value = ""
-            document.querySelector("#userEmail").value = ""
-        }
-    },
     renderRegisterForm: {
         value: () => {
             return `
