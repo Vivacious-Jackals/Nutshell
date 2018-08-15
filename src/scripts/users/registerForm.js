@@ -1,10 +1,4 @@
 const formManager = Object.create(null, {
-    clearForm: {
-        value: () => {
-            document.querySelector("#userName").value = ""
-            document.querySelector("#userEmail").value = ""
-        }
-    },
     renderRegisterForm: {
         value: () => {
             return `
@@ -19,6 +13,7 @@ const formManager = Object.create(null, {
                 </fieldset>
 
                 <button id="registerNewUser">Register New User</button>
+                <button id="logInUser">Log in</button>
             `
         }
     }
