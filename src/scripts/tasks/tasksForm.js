@@ -1,4 +1,15 @@
+// author: Grady R.
+// purpose:  Task Form builder, creates an Form whose field values should push to APIObject, 
+
+console.log("tasksForm.js")
+
 const TaskFormManager = Object.create(null, {
+    clearForm: {
+        value: () => {
+            document.querySelector("#entryTitle").value = ""
+            document.querySelector("#entryContent").value = ""
+        }
+    },
     renderTaskForm: {
         value: () => {
             return `
@@ -9,7 +20,7 @@ const TaskFormManager = Object.create(null, {
 
                 <fieldset>
                     <label for="expectedCompletionDate">Expected Completion Date: </label>
-                    <input id="expectedCompletionDate"></textarea>
+                    <input type="date" id="expectedCompletionDate"></textarea>
                 </fieldset>
 
                 <button id="completed">Click here when task is completed</button>
@@ -22,3 +33,4 @@ const TaskFormManager = Object.create(null, {
 
 
 module.exports = TaskFormManager
+
