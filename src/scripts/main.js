@@ -1,6 +1,9 @@
 const APIObject = require("./dataManager")
 const formManager = require("./users/registerForm")
+const newsFormManager = require("./news/newsForm")
+const newsToAPI = require("./news/news")
 const $ = require("jquery")
+
 
 document.querySelector("#toggleButton").addEventListener("click", () => {
     document.querySelector("#registerContainer").classList.add("is-visible");
@@ -63,9 +66,13 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
                     alert("UserName or Email is incorrect")
                 } else {
                     sessionStorage.setItem("activeUser", JSON.stringify(userObject));
-                    $("div").empty();
+                    $("#registerContainer").empty();
+                    $("#welcome").empty();
+                    document.querySelector("#newsContainer").innerHTML = newsFormManager.renderNewsForm()
+                    newsToAPI()
                 }
             })
-
         })
 })
+
+
