@@ -1,5 +1,7 @@
 const APIObject = require("./dataManager")
 const formManager = require("./users/registerForm")
+const eventFormManager = require("./events/eventsForm")
+const eventList = require("./events/events")
 const $ = require("jquery")
 
 document.querySelector("#toggleButton").addEventListener("click", () => {
@@ -63,9 +65,59 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
                     alert("UserName or Email is incorrect")
                 } else {
                     sessionStorage.setItem("activeUser", JSON.stringify(userObject));
-                    $("div").empty();
+                    $("#welcome").empty();
+                    $("#registerContainer").empty();
+                    APIObject.getEvent().then((events) => {
+                        eventList(events);
+                    })
+                    // document.querySelector("#eventContainer").innerHTML = eventFormManager.renderEventForm();
                 }
             })
 
         })
 })
+
+// Handle save button clicks within the form section of the module TG
+document.querySelector("#eventContainer").addEventListener("click", evt => {
+    if (evt.target.classList.contains("saveNewEvent")) {
+        let user = JSON.parse(sessionStorage.getItem("activeUser"))
+        let newEvent = {
+            name: document.querySelector("#eventName").value,
+            date: document.querySelector("#eventDate").value,
+            location: document.querySelector("#eventLocation").value,
+            userId: user.id
+        }
+        APIObject.saveEvent(newEvent);
+        eventFormManager.clearForm();
+    }
+})
+// Handle post new event button within the event list module TG
+document.querySelector("#eventContainer").addEventListener("click", evt => {
+    if (evt.target.classList.contains("post")) {
+        console.log("it worked")
+        $("#eventContainer").empty();
+        document.querySelector("#eventContainer").innerHTML = eventFormManager.renderEventForm();
+    }
+})
+// Handle the back button of the form section TG
+document.querySelector("#eventContainer").addEventListener("click", evt => {
+    if (evt.target.classList.contains("back")) {
+        console.log("it actually worked")
+        $("#eventContainer").empty();
+        APIObject.getEvent().then((events) => {
+            eventList(events);
+            console.log("events", events);
+        })
+    }
+})
+
+// //Populate with post button
+// document.querySelector("#eventContainer").innerHTML = `<button id="postNewEvent">Post</button>`
+// //Populate with list of entries
+// eventList();
+// //logic for post button
+// document.querySelector("#EventContainer").addEventListener("click", () => {
+//     $("#eventContainer").empty();
+//     eventFormManager.renderEventForm();
+// })
+

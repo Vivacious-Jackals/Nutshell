@@ -1,3 +1,4 @@
+// Taylor created a event form to add events to the list
 const eventFormManager = Object.create(null, {
     clearForm: {
         value: () => {
@@ -24,7 +25,8 @@ const eventFormManager = Object.create(null, {
                     <input id="eventLocation"></textarea>
                 </fieldset>
 
-                <button id="postNewEvent">Post</button>
+                <button class="saveNewEvent">Save</button>
+                <button class="back">Back to Events</button>
             `
         }
     }
