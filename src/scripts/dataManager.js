@@ -77,8 +77,20 @@ APIObject.getEvent = () => {
         .then(response => response.json())
 }
 
+APIObject.getSingleEvent = (entryId) => {
+    return fetch(`http://localhost:3000/events/${entryId}`)
+        .then(res => res.json())
+}
 
-
+APIObject.editJournalEntry = (entry, entryId) => {
+    return fetch(`http://localhost:3000/events/${entryId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(entry)
+    }).then(response => response.json());
+}
 
 
 

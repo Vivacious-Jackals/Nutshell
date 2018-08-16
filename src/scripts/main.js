@@ -76,9 +76,9 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
 
         })
 })
-
-// Handle save button clicks within the form section of the module TG
+//Logic for the Button functionality TG
 document.querySelector("#eventContainer").addEventListener("click", evt => {
+    // Handle save button clicks within the form section of the module TG
     if (evt.target.classList.contains("saveNewEvent")) {
         let user = JSON.parse(sessionStorage.getItem("activeUser"))
         let newEvent = {
@@ -90,18 +90,14 @@ document.querySelector("#eventContainer").addEventListener("click", evt => {
         APIObject.saveEvent(newEvent);
         eventFormManager.clearForm();
     }
-})
-// Handle post new event button within the event list module TG
-document.querySelector("#eventContainer").addEventListener("click", evt => {
-    if (evt.target.classList.contains("post")) {
+    // Handle post new event button within the event list module TG
+    else if (evt.target.classList.contains("postNewEvent")) {
         console.log("it worked")
         $("#eventContainer").empty();
         document.querySelector("#eventContainer").innerHTML = eventFormManager.renderEventForm();
     }
-})
-// Handle the back button of the form section TG
-document.querySelector("#eventContainer").addEventListener("click", evt => {
-    if (evt.target.classList.contains("back")) {
+    // Handle the back button of the form section TG
+    else if (evt.target.classList.contains("backToEvents")) {
         console.log("it actually worked")
         $("#eventContainer").empty();
         APIObject.getEvent().then((events) => {
@@ -111,13 +107,4 @@ document.querySelector("#eventContainer").addEventListener("click", evt => {
     }
 })
 
-// //Populate with post button
-// document.querySelector("#eventContainer").innerHTML = `<button id="postNewEvent">Post</button>`
-// //Populate with list of entries
-// eventList();
-// //logic for post button
-// document.querySelector("#EventContainer").addEventListener("click", () => {
-//     $("#eventContainer").empty();
-//     eventFormManager.renderEventForm();
-// })
 

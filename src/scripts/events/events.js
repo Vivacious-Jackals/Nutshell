@@ -8,7 +8,7 @@ const titleElement = () => {
             <h1>
                 Events
             </h1>
-            <button class="post">Post New Event</button>
+            <button class="postNewEvent">Post New Event</button>
         </div>
     `
 }

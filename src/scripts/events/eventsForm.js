@@ -26,7 +26,7 @@ const eventFormManager = Object.create(null, {
                 </fieldset>
 
                 <button class="saveNewEvent">Save</button>
-                <button class="back">Back to Events</button>
+                <button class="backToEvents">Back to Events</button>
             `
         }
     }
