@@ -1,10 +1,15 @@
 const $ = require("jquery")
-const APIObject = require("./dataManager")
+const APIObject = require("../dataManager")
 const eventFormManager = require("./eventsForm")
 const eventList = require("./events")
 
 // All my event button logic
 const eventButtonLogic = function () {
+    //Edit part for the edit button functionality TG
+    const editMode = {
+        "enabled": false,
+        "eventId": null
+    }    
     //Logic for the Button functionality TG
     document.querySelector("#eventContainer").addEventListener("click", evt => {
         // Handle save button clicks within the form section of the module TG
@@ -19,7 +24,7 @@ const eventButtonLogic = function () {
             APIObject.saveEvent(newEvent);
             eventFormManager.clearForm();
         }
-        //Handle save button clicks for editing
+        //Handle save button clicks for editing TG
         else if (evt.target.classList.contains("saveNewEvent") && editMode.enabled === true) {
             let user = JSON.parse(sessionStorage.getItem("activeUser"))
             let editedEvent = {

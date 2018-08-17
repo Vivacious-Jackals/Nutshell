@@ -1,4 +1,4 @@
-// Taylor created a events list that will store all of the events
+// Taylor created an events list that will store all of the events
 const eventEntry = require("./eventEntry")
 
 const listElement = document.querySelector("#eventContainer")
