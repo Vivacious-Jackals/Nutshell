@@ -1,29 +1,20 @@
 const APIObject = require("./dataManager")
 const formManager = require("./users/registerForm")
 const newsFormManager = require("./news/newsForm")
-const newsToAPI = require("./news/news")
+const newsList = require("./news/news")
+const newsButtons = require("./news/newsButtons")
 const $ = require("jquery")
 
 
 document.querySelector("#toggleButton").addEventListener("click", () => {
     document.querySelector("#registerContainer").classList.add("is-visible");
-    // })
-
-
     document.querySelector("#registerContainer").innerHTML = formManager.renderRegisterForm(),
-
-
         //Add an eventlistener to the save button
         document.querySelector("#registerNewUser").addEventListener("click", () => {
-            //Get form field values
-            //Create object from them
-
-
             const newUser = {
                 name: document.querySelector("#userName").value,
                 email: document.querySelector("#userEmail").value,
             }
-
             //Check if the values are already used in database
             APIObject.getUserInfo().then((result) => {
                 let userName = result.find(item => {
@@ -47,16 +38,11 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
             })
         }),
 
-
-
         document.querySelector("#logInUser").addEventListener("click", () => {
-
-
             const existingUser = {
                 name: document.querySelector("#userName").value,
                 email: document.querySelector("#userEmail").value,
             }
-
             //Check if the values are already used in database
             APIObject.getUserInfo().then((result) => {
                 let userObject = result.find(item => {
@@ -66,13 +52,57 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
                     alert("UserName or Email is incorrect")
                 } else {
                     sessionStorage.setItem("activeUser", JSON.stringify(userObject));
-                    $("#registerContainer").empty();
                     $("#welcome").empty();
-                    document.querySelector("#newsContainer").innerHTML = newsFormManager.renderNewsForm()
-                    newsToAPI()
+                    $("#registerContainer").empty();
+                    let user = JSON.parse(sessionStorage.getItem("activeUser"))
+                    APIObject.getNewsArticles(user.id).then((news) => {
+                        newsList(news);
+                    })
                 }
             })
         })
 })
+
+
+
+newsButtons()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

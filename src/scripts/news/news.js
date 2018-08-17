@@ -1,27 +1,24 @@
-const APIObject = require("../dataManager")
-const newsFormManager = require("./newsForm")
+const createNewsEntry = require("./newsEntry")
 
-function newsToAPI(){
-document.querySelector("#saveNewsButton").addEventListener("click", () => {
-    //Get form field values
-    //Create object from them
-    let user = JSON.parse(sessionStorage.getItem("activeUser"))
-    let newArticle = {
-        userId: user.id,
-        title: document.querySelector("#newsTitle").value,
-        content: document.querySelector("#newsContent").value,
-        url: document.querySelector("#newsURL").value,
-    }
-       //Post to API
-    APIObject.saveNews(newArticle).then(() => {
-        //Clear the Form Fields
-        alert("Article Saved!")
-        newsFormManager.clearNewsForm()
-        //Put HTML Representation on the DOM
+const listElement = document.querySelector("#newsContainer")
+const titleElement = () => {
+    return `
+        <div class="newsEntry">
+            <h1>
+                News
+            </h1>
+            <button class="postNews">Post News</button>
+        </div>
+    `
+}
+
+const newsList = (news) => {
+    listElement.innerHTML = ""
+
+    listElement.innerHTML = titleElement()
+    news.map(entry => {
+        listElement.innerHTML += createNewsEntry(entry)
     })
-})
-}      
+}
 
-
-
-module.exports = newsToAPI;
+module.exports = newsList

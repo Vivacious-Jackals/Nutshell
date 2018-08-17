@@ -30,66 +30,17 @@ APIObject.saveNews = (news) => {
         .then(response => response.json())
 }
 
-APIObject.getNewsArticles = () => {
-    return fetch("http://localhost:8088/news")
+APIObject.getNewsArticles = (ID) => {
+    return fetch(`http://localhost:8088/news?userId=${ID}`)
         .then(response => response.json())
 }
 
-// APIObject.saveNews = (news) => {
-//     return fetch("http://localhost:8088/news", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(news)
-//     })
-//     .then(response => response.json())
-// }
+APIObject.deleteNewsEntry = (ID) => {
+    return fetch(`http://localhost:8088/news/${ID}`, {
+        method: "DELETE"
+    }).then(response => response.json())
 
-// APIObject.deleteNews = () => {
-//     return fetch(`http://localhost:8088/news/${ID}`, {
-//         method: "DELETE"
-//     }).then(response => response.json())
-
-// }
-
-// APIObject.saveMessage = (messages) => {
-//     return fetch("http://localhost:8088/messages", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(messages)
-//     })
-//     .then(response => response.json())
-// }
-
-// APIObject.saveTask = (tasks) => {
-//     return fetch("http://localhost:8088/tasks", {
-//         method: "POST",
-//        headers: {
-//            "Content-Type": "application/json"
-//         },
-//        body: JSON.stringify(tasks)
-//    })
-//    .then(response => response.json())
-// }
-
-// APIObject.saveEvent = (events) => {
-//     return fetch("http://localhost:8088/events", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(events)
-//     })
-//     .then(response => response.json())
-// }
-
-
-
-
-
+}
 
 module.exports = APIObject
 

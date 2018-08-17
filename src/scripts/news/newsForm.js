@@ -16,9 +16,9 @@ const newsFormManager = Object.create(null, {
                 
                 <fieldset class="newsField">
                     <label for="newsContent">Synopsis</label>
-                    <textarea id="newsContent"
+                    <input id="newsContent"
                     >
-                    </textarea>
+                    </input>
                 </fieldset>
 
                 <fieldset class="newsField">
@@ -26,12 +26,12 @@ const newsFormManager = Object.create(null, {
                     <input required type="text" id="newsURL">
                 </fieldset>
 
-                <button id="saveNewsButton">Save News Entry</button>
+                <button class="saveNewsButton">Save News Entry</button>
+                <button class="backToNewsButton">Back to News</button>
             `
         }
     }
 
 })
-
 
 module.exports = newsFormManager
