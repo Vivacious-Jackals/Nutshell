@@ -1,5 +1,8 @@
+console.log("hello main.js")
 const APIObject = require("./dataManager")
 const formManager = require("./users/registerForm")
+const TaskFormManager = require("./tasks/tasksForm")
+const taskFunction = require("./tasks/tasks")
 const newsFormManager = require("./news/newsForm")
 const newsList = require("./news/news")
 const newsButtons = require("./news/newsButtons")
@@ -11,6 +14,7 @@ const $ = require("jquery")
 
 document.querySelector("#toggleButton").addEventListener("click", () => {
     document.querySelector("#registerContainer").classList.add("is-visible");
+    document.querySelector("#registerContainer").innerHTML = formManager.renderRegisterForm(),
     document.querySelector("#registerContainer").innerHTML = formManager.renderRegisterForm()
     //Add an eventlistener to the save button
     document.querySelector("#registerNewUser").addEventListener("click", () => {
@@ -42,6 +46,7 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
             }
         })
     }),
+    
         document.querySelector("#logInUser").addEventListener("click", () => {
             const existingUser = {
                 name: document.querySelector("#userName").value,
@@ -66,6 +71,7 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
                     APIObject.getEvent(user.id).then((events) => {
                         eventList(events);
                     })
+                    taskFunction()
                 }
             })
         })
