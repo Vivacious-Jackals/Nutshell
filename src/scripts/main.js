@@ -55,6 +55,7 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
                     $("#welcome").empty();
                     $("#registerContainer").empty();
                     let user = JSON.parse(sessionStorage.getItem("activeUser"))
+                    document.querySelector("#logout").innerHTML = `<button class="logoutButton">${user.name} Logout</button>`;
                     APIObject.getEvent(user.id).then((events) => {
                         eventList(events);
                     })
@@ -63,4 +64,12 @@ document.querySelector("#toggleButton").addEventListener("click", () => {
         })
 })
 
+document.querySelector("#logout").addEventListener("click", evt => {
+    if(evt.target.classList.contains("logoutButton")) {
+        $("div").empty();
+        sessionStorage.clear();
+        document.querySelector("#registerContainer").innerHTML = "<h1>We Done!</h1>"
+        // document.querySelector("#registerContainer").innerHTML = formManager.renderRegisterForm();
+    }
+})
 eventButtonLogic();
