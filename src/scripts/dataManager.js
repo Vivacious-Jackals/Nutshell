@@ -19,6 +19,17 @@ APIObject.getUserInfo = () => {
         .then(response => response.json())
 }
 
+APIObject.saveNews = (news) => {
+    return fetch("http://localhost:8088/news", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(news)
+    })
+        .then(response => response.json())
+}
+
 APIObject.saveEvent = (events) => {
     return fetch("http://localhost:8088/events", {
         method: "POST",
@@ -27,8 +38,22 @@ APIObject.saveEvent = (events) => {
         },
         body: JSON.stringify(events)
     })
-    .then(response => response.json())
+        .then(response => response.json())
 }
+
+
+APIObject.getNewsArticles = (ID) => {
+    return fetch(`http://localhost:8088/news?userId=${ID}`)
+        .then(response => response.json())
+}
+
+
+APIObject.deleteNewsEntry = (ID) => {
+    return fetch(`http://localhost:8088/news/${ID}`, {
+        method: "DELETE"
+    }).then(response => response.json())
+}
+
 
 APIObject.getEvent = (id) => {
     return fetch(`http://localhost:8088/events?userId=${id}`)
@@ -40,6 +65,7 @@ APIObject.getSingleEvent = (id) => {
         .then(res => res.json())
 }
 
+
 APIObject.editEventEntry = (event, id) => {
     return fetch(`http://localhost:8088/events/${id}`, {
         method: "PUT",
@@ -49,6 +75,7 @@ APIObject.editEventEntry = (event, id) => {
         body: JSON.stringify(event)
     }).then(response => response.json());
 }
+
 
 
 
