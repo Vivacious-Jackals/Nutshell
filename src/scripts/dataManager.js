@@ -50,16 +50,16 @@ APIObject.getUserInfo = () => {
 //     .then(response => response.json())
 // }
 
-// APIObject.saveTask = (tasks) => {
-//     return fetch("http://localhost:8088/tasks", {
-//         method: "POST",
-//        headers: {
-//            "Content-Type": "application/json"
-//         },
-//        body: JSON.stringify(tasks)
-//    })
-//    .then(response => response.json())
-// }
+APIObject.saveTask = (tasks) => {
+    return fetch("http://localhost:8088/tasks", {
+        method: "POST",
+       headers: {
+           "Content-Type": "application/json"
+        },
+       body: JSON.stringify(tasks)
+   })
+   .then(response => response.json())
+}
 
 // APIObject.saveEvent = (events) => {
 //     return fetch("http://localhost:8088/events", {

@@ -6,8 +6,9 @@ console.log("tasksForm.js")
 const TaskFormManager = Object.create(null, {
     clearForm: {
         value: () => {
-            document.querySelector("#entryTitle").value = ""
-            document.querySelector("#entryContent").value = ""
+            document.querySelector("#taskName").value = ""
+            document.querySelector("#taskDescription").value = ""
+            document.querySelector("#expectedCompletionDate").value = ""
         }
     },
     renderTaskForm: {
@@ -19,11 +20,16 @@ const TaskFormManager = Object.create(null, {
                 </fieldset>
 
                 <fieldset>
+                    <label for="taskDescription">Task Description:</label>
+                    <input required type="text" id="taskDescription">
+                </fieldset>
+
+                <fieldset>
                     <label for="expectedCompletionDate">Expected Completion Date: </label>
                     <input type="date" id="expectedCompletionDate"></textarea>
                 </fieldset>
 
-                <button id="completed">Click here when task is completed</button>
+                <button id="completedTask">Click here to save this task to the API</button>
                 
             `
         }
@@ -33,4 +39,6 @@ const TaskFormManager = Object.create(null, {
 
 
 module.exports = TaskFormManager
+
+
 

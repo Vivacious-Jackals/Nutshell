@@ -1,17 +1,35 @@
 // author Grady R.
-// this file should push to the DOM
-
+// this file should use an event listener to post the field values to the API
 console.log("tasks.js")
-
-const APIObject = require("./../dataManager")
-const formManager = require("./../users/registerForm")
-
 const $ = require("jquery")
+const TaskFormManager = require("./tasksForm")
+const DataManager = require("./../dataManager")
 
-// using jQuery to grab the div i am going to use to insert my module to the DOM
-let taskContainer = $("#taskContainer");
+function taskFunction(){
 
-$( "#taskContainer" ).css( "border", "3px solid red" );
+    // grabs Grady's div; attaches the TaskForm for the user to complete
+    document.querySelector("#taskContainer").innerHTML = TaskFormManager.renderTaskForm();
+    
+    
+    // add event listener , grab <button id="completedTask"> from tasksForm.js then use POST command to post to API
+    document.querySelector("#completedTask").addEventListener("click", () => {
+        // Get form field values
+        // Create object from them
+        const newEntry = {
+            title: document.querySelector("#taskName").value,
+            content: document.querySelector("#taskDescription").value,
+            date: document.querySelector("#expectedCompletionDate").value,
+            
+        }
+        
+        // POST to API
+        DataManager.saveTask(newEntry)
+        .then(() => {
+            // Clear the form fields
+            TaskFormManager.clearForm()
+        })
+    })
+    
+}
 
-taskContainer.text("Grady's Div:  need to appendchild 2 more <div>'s to this div, one <div> will hold the form, the other <div>will hold the list of tasks");
-
+module.exports = taskFunction
