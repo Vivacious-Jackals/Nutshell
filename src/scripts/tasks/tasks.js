@@ -4,6 +4,7 @@ console.log("tasks.js")
 const $ = require("jquery")
 const TaskFormManager = require("./tasksForm")
 const DataManager = require("./../dataManager")
+const taskEntry = require("./../tasks/taskCard")
 
 function taskFunction(){
 
@@ -19,14 +20,23 @@ function taskFunction(){
             title: document.querySelector("#taskName").value,
             content: document.querySelector("#taskDescription").value,
             date: document.querySelector("#expectedCompletionDate").value,
-            
         }
         
-        // POST to API
+        // POST to API .then render to DOM
         DataManager.saveTask(newEntry)
         .then(() => {
             // Clear the form fields
             TaskFormManager.clearForm()
+        })
+        .then(() => {
+            // send the info into the DOM
+            console.log(newEntry),
+            // create A new "virtual" document fragment to contain components
+            newDiv1 = document.createElement("div"),
+            
+            newDiv1.innerHTML = taskEntry(newEntry)
+            
+            document.querySelector("#taskContainer").appendChild(newDiv1)
         })
     })
     
