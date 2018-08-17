@@ -72,23 +72,23 @@ APIObject.saveEvent = (events) => {
     .then(response => response.json())
 }
 
-APIObject.getEvent = () => {
-    return fetch("http://localhost:8088/events")
+APIObject.getEvent = (id) => {
+    return fetch(`http://localhost:8088/events?userId=${id}`)
         .then(response => response.json())
 }
 
-APIObject.getSingleEvent = (entryId) => {
-    return fetch(`http://localhost:3000/events/${entryId}`)
+APIObject.getSingleEvent = (id) => {
+    return fetch(`http://localhost:8088/events/${id}`)
         .then(res => res.json())
 }
 
-APIObject.editJournalEntry = (entry, entryId) => {
-    return fetch(`http://localhost:3000/events/${entryId}`, {
+APIObject.editEventEntry = (event, id) => {
+    return fetch(`http://localhost:8088/events/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(entry)
+        body: JSON.stringify(event)
     }).then(response => response.json());
 }
 
