@@ -17,9 +17,11 @@ This application uses grunt, json server, browserify, vanilla javascript, water.
 
 ### DOM Screengrab:
 <hr>
+
 ![DOM](./DOM_screengrab.png) <br/><br/>
 
 <hr>
+
 ### API Screengrab:
 ![API](API_screengrab.png)
 
