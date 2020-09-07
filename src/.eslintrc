@@ -1,4 +1,4 @@
-    {
+{
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
@@ -12,4 +12,3 @@
         "eqeqeq": 2
     }
 }
-  
