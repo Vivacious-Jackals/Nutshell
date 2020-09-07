@@ -15,14 +15,11 @@ This application uses grunt, json server, browserify, vanilla javascript, water.
 
 
 
-
-## Screengrabs:
-
-### DOM, now using *Water.css*
-🌊 A drop-in collection of [CSS styles](https://watercss.netlify.app/) to make simple websites just a little nicer:
+### DOM Screengrab:
+<hr>
 ![DOM](./DOM_screengrab.png) <br/><br/>
 
-
-### API:
+<hr>
+### API Screengrab:
 ![API](API_screengrab.png)
 
